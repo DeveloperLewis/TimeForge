@@ -20,6 +20,11 @@
                     fontFamily: {
                         lato: ['Lato'],
                     },
+                    colors: {
+                        'custom-blue-dark': '#0A0D12',
+                        'custom-blue-medium': '#11161A',
+                        'custom-blue-light': '#181E24',
+                    }
                 }
             }
         }
@@ -27,7 +32,7 @@
     <title>TimeForge</title>
 </head>
 
-<body class="font-lato text-white" style="background-color: #0A0D12">
+<body class="font-lato text-white bg-custom-blue-dark">
     <!--
         Hero Image with navbar
     -->
@@ -131,14 +136,16 @@
     -->
     <main>
         <div class="mt-10 xl:mx-40">
-            <div style="background-color: #11161A" class="rounded-t-lg">
-        @yield('content')
+            <div class="rounded-t-lg bg-custom-blue-medium">
+                @yield('content')
             </div>
         </div>
     </main>
 
     <footer>
-
+        <div class="text-center bg-custom-blue-light xl:mx-40 p-5">
+            <p class="text-gray-500">© Copyright 2023 of Lewis Design</p>
+        </div>
     </footer>
 </body>
 </html>
