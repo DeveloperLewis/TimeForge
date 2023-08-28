@@ -21,9 +21,9 @@
                         lato: ['Lato'],
                     },
                     colors: {
-                        'custom-blue-dark': '#0A0D12',
-                        'custom-blue-medium': '#11161A',
                         'custom-blue-light': '#181E24',
+                        'custom-blue-medium': '#11161A',
+                        'custom-blue-dark': '#0A0D12',
                     }
                 }
             }
@@ -32,7 +32,7 @@
     <title>TimeForge</title>
 </head>
 
-<body class="font-lato text-white bg-custom-blue-dark">
+<body class="font-lato text-white bg-gradient-to-b from-custom-blue-dark to-black">
     <!--
         Hero Image with navbar
     -->
@@ -65,8 +65,16 @@
                         <a href="/" class="ml-5">Home</a>
                         <a href="/features" class="ml-5">Features</a>
                         <a href="/pricing" class="ml-5">Pricing</a>
-                        <a href="/user/login" class="ml-5 px-2 py-1 border rounded-md hover:bg-white hover:text-black text-center">Login</a>
-                        <a href="/user/register" class="ml-5 px-2 py-1 border rounded-md hover:bg-white hover:text-black text-center">Register</a>
+                        @auth
+                        <form method="POST" action="/user/logout" class="inline">
+                            @csrf
+                            <button type="submit" class="ml-5 px-2 py-1 border rounded-md hover:bg-white hover:text-black text-center">Logout</button>
+                        </form>
+
+                        @else
+                            <a href="/user/login" class="ml-5 px-2 py-1 border rounded-md hover:bg-white hover:text-black text-center">Login</a>
+                            <a href="/user/register" class="ml-5 px-2 py-1 border rounded-md hover:bg-white hover:text-black text-center">Register</a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -135,8 +143,8 @@
         Injected Content
     -->
     <main>
-        <div class="mt-10 xl:mx-40">
-            <div class="rounded-t-lg bg-custom-blue-medium">
+        <div class="xl:mt-10 xl:mx-40">
+            <div class="xl:rounded-t-lg bg-custom-blue-medium">
                 @yield('content')
             </div>
         </div>
