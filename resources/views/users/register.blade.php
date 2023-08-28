@@ -1,18 +1,18 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex justify-center items-center py-10">
-        <div class="bg-custom-blue-light md:w-1/3 py-5 rounded-xl">
-            <div class="flex justify-center p-2 md:p-5">
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-custom-blue-light xl:w-1/4 py-5 sm:rounded-xl">
+            <div class="flex justify-center md:p-2 md:p-5">
                 <img src="{{asset('images/logo_150x150.webp')}}" alt="Website icon">
             </div>
 
-            <div class="px-3">
+            <div class="px-6">
                 <p class="text-center text-4xl mb-1 font-semibold">Register your account</p>
                 <p class="text-center text-sm">Already have an account?<a href="/user/login" class="text-blue-300"> Login here</a></p>
             </div>
 
-            <div class="my-7 mx-20">
+            <div class="my-7 mx-10">
                 <form method="post" action="/user/register">
                     @csrf
 
@@ -43,7 +43,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-10">
+                    <div class="mb-3">
                         <p class="py-1 text-lg">Confirm Password</p>
                         <input type="password" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring"  name="password_confirmation" required/>
 
@@ -51,6 +51,9 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
+
+                    <p class="mb-10 text-sm text-gray-400 text-center">By signing up, you agree to our <a href="/terms-and-conditions" class="text-blue-400">Terms of Use</a>,
+                        <a href="/privacy-policy" class="text-blue-400">Privacy Policy</a> and <a href="/cookies-policy" class="text-blue-400">Cookies Policy</a></p>
 
                     <div class="flex justify-center">
                         <button type="submit" class="text-black rounded py-2 w-1/2 bg-white hover:bg-gray-200">Register</button>

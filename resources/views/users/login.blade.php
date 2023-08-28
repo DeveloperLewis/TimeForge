@@ -1,18 +1,18 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex justify-center items-center py-10">
-        <div class="bg-custom-blue-light md:w-1/3 py-5 rounded-xl">
-            <div class="flex justify-center p-2 md:p-5">
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-custom-blue-light xl:w-1/4 py-5 sm:rounded-xl">
+            <div class="flex justify-center md:p-2 md:p-5">
                 <img src="{{asset('images/logo_150x150.webp')}}" alt="Website icon">
             </div>
 
-            <div class="px-3">
+            <div class="px-6">
                 <p class="text-center text-4xl mb-1 font-semibold">Login to your account</p>
                 <p class="text-center text-sm">Don't have an account yet?<a href="/user/register" class="text-blue-300"> Register here</a></p>
             </div>
 
-            <div class="my-7 mx-20">
+            <div class="sm:my-7 mx-10">
                 <form method="post" action="/user/login">
                     @csrf
 
