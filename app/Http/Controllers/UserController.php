@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
     {
-        return view('users.login');
+        return view('users.register');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function login()
     {
-        return view('users.register');
+        return view('users.login');
     }
 
     public function authenticate(Request $request)

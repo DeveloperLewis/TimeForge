@@ -1,36 +1,44 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex justify-center items-center p-10">
-        <form method="post" action="/user/login">
-            @csrf
-
-            <div class="mb-6">
-                <label for="email">Email</label>
-                <input type="email" name="email" class="text-black" value="{{old('email')}}"/>
-
-                @error('email')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
+    <div class="flex justify-center items-center py-10">
+        <div class="bg-custom-blue-light md:w-1/3 py-5 rounded-xl">
+            <div class="flex justify-center p-2 md:p-5">
+                <img src="{{asset('images/logo_150x150.webp')}}" alt="Website icon">
             </div>
 
-            <div class="mb-6">
-                <label for="password">Password</label>
-                <input type="password" class="text-black"  name="password"
-                />
-
-                @error('password')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
+            <div class="px-3">
+                <p class="text-center text-4xl mb-1 font-semibold">Login to your account</p>
+                <p class="text-center text-sm">Don't have an account yet?<a href="/user/register" class="text-blue-300"> Register here</a></p>
             </div>
 
-            <div class="mb-6">
-                <button type="submit" class="text-black rounded py-2 px-4 bg-white hover:bg-gray-200">Login</button>
-            </div>
+            <div class="my-7 mx-20">
+                <form method="post" action="/user/login">
+                    @csrf
 
-            <div class="mt-8">
-                <p>Don't have an account yet?<a href="/user/register" class="text-laravel">Register here</a></p>
+                    <div class="mb-3">
+                        <p class="py-1 text-lg">Email Address</p>
+                        <input type="email" name="email" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring" value="{{old('email')}}" required/>
+
+                        @error('email')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-10">
+                        <p class="py-1 text-lg">Password</p>
+                        <input type="password" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring"  name="password" required/>
+
+                        @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button type="submit" class="text-black rounded py-2 w-1/2 bg-white hover:bg-gray-200">Login</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 @endsection
