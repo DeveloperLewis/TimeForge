@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <x-navbar-with-hero />
+    <x-navbar_with_hero />
     <x-container>
         <!--
            Banner Separator
