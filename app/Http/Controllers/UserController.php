@@ -11,14 +11,14 @@ class UserController extends Controller
 {
     public function create()
     {
-        return view('users.register');
+        return view('user.register');
     }
 
     public function store(Request $request)
     {
         $formFields = $request->validate(([
             'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'email' => ['required', 'email', Rule::unique('user', 'email')],
             'password' => ['required', 'confirmed', 'min:6']
         ]));
 
@@ -28,12 +28,12 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/')->with('success', 'You have registered and been automatically logged in.');
+        return redirect('/dashboard');
     }
 
     public function login()
     {
-        return view('users.login');
+        return view('user.login');
     }
 
     public function authenticate(Request $request)
@@ -47,7 +47,7 @@ class UserController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect('/')->with('success', 'You have successfully logged in.');
+            return redirect('/dashboard');
         }
 
         return back()->withErrors(['email' => 'The Email or Password is incorrect.'])->onlyInput('email');

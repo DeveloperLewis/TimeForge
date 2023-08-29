@@ -24,6 +24,8 @@
                     <a href="/features" class="ml-5">Features</a>
                     <a href="/pricing" class="ml-5">Pricing</a>
                     @auth
+                        <a href="/dashboard" class="ml-5">Dashboard</a>
+
                         <form method="POST" action="/user/logout" class="inline">
                             @csrf
                             <button type="submit" class="ml-5 px-2 py-1 border rounded-md hover:bg-white hover:text-black text-center">Logout</button>
