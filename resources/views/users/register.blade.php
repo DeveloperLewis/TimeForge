@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex justify-center items-center h-screen">
+    <div class="flex justify-center items-center h-screen bg-cover bg-no-repeat bg-fixed" style="background-image: url('{{asset('/images/background_01.webp')}}');">
         <div class="bg-custom-blue-light xl:w-1/4 py-5 sm:rounded-xl">
             <div class="flex justify-center md:p-2 md:p-5">
                 <img src="{{asset('images/logo_150x150.webp')}}" alt="Website icon">
