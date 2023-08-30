@@ -18,7 +18,7 @@
 
                     <div class="mb-3">
                         <p class="py-1 text-lg">Email Address</p>
-                        <input type="email" name="email" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring" value="{{old('email')}}" required/>
+                        <x-ui.forms.input type="email" name="email" value="{{old('email')}}"></x-ui.forms.input>
 
                         @error('email')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -28,6 +28,7 @@
                     <div class="mb-10">
                         <p class="py-1 text-lg">Password</p>
                         <input type="password" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring"  name="password" required/>
+                        <x-ui.forms.input type="password" name="password"></x-ui.forms.input>
 
                         @error('password')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -35,7 +36,7 @@
                     </div>
 
                     <div class="flex justify-center">
-                        <button type="submit" class="text-black rounded py-2 w-1/2 bg-white hover:bg-gray-200">Login</button>
+                        <x-ui.forms.button-filled>Login</x-ui.forms.button-filled>
                     </div>
                 </form>
             </div>

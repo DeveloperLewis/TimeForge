@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <x-navbar_with_hero />
+    <x-navbar_with_hero></x-navbar_with_hero>
     <x-container>
         <!--
            Banner Separator
@@ -18,7 +18,7 @@
         <div class="mt-10 p-5">
             <div class="md:flex md:flex-col md:justify-center md:items-center">
                 <div class="mt-10 sm:flex sm:justify-center md:w-3/5">
-                    <img src="{{asset('/images/homepage_character_02.png')}}" height="375" width="375" class="rounded-lg">
+                    <img src="{{asset('/images/homepage_character_02.png')}}" height="375" width="375" class="rounded-lg" alt="A fantasy healer character holding a glowing gem.">
 
                     <div class="2xl:ml-20 p-5">
                         <p class="text-2xl md:text-4xl pb-4 truncate">Customize Your Character</p>
@@ -46,11 +46,11 @@
                         </p>
                     </div>
 
-                    <img src="{{asset('/images/homepage_character_01.png')}}" height="375" width="375" class="rounded-lg order-first md:order-last">
+                    <img src="{{asset('/images/homepage_character_01.png')}}" height="375" width="375" class="rounded-lg order-first md:order-last" alt="A rabbit/bunny posing and wielding a sword.">
                 </div>
 
                 <div class="mt-10 sm:flex sm:justify-center md:w-3/5">
-                    <img src="{{asset('/images/homepage_character_03.png')}}" height="375" width="375" class="rounded-lg">
+                    <img src="{{asset('/images/homepage_character_03.png')}}" height="375" width="375" class="rounded-lg" alt="A ginger body casting a spell, battling the void.">
                     <div class="md:ml-20 p-5">
                         <p class="text-2xl md:text-4xl pb-4 truncate">Become Your Character</p>
                         <p>
@@ -80,7 +80,7 @@
             <div class="md:flex md:justify-between mt-10 p-5">
                 <div class="px-10 text-center mt-5">
                     <div class="flex justify-center p-2">
-                        <img src="{{asset('/images/homepage_icon_04.webp')}}" height="175" width="175">
+                        <img src="{{asset('/images/homepage_icon_04.webp')}}" height="175" width="175" alt="A torch.">
                     </div>
                     <p class="text-xl">A Second You</p>
                     <p class="text-gray-400 text-sm">
@@ -91,7 +91,7 @@
 
                 <div class="px-10 text-center mt-5">
                     <div class="flex justify-center p-2">
-                        <img src="{{asset('/images/homepage_icon_02.webp')}}" height="175" width="175">
+                        <img src="{{asset('/images/homepage_icon_02.webp')}}" height="175" width="175" alt="A purple desert with a sunset in the background.">
                     </div>
                     <p class="text-xl">Consistently Improve</p>
                     <p class="text-gray-400 text-sm">
@@ -102,7 +102,7 @@
 
                 <div class="px-10 text-center mt-5">
                     <div class="flex justify-center p-2">
-                        <img src="{{asset('/images/homepage_icon_01.webp')}}" height="175" width="175">
+                        <img src="{{asset('/images/homepage_icon_01.webp')}}" height="175" width="175" alt="A glowing blue sea fruit.">
                     </div>
                     <p class="text-xl">Addicting Accountability</p>
                     <p class="text-gray-400 text-sm">
@@ -113,7 +113,7 @@
 
                 <div class="px-10 text-center mt-5">
                     <div class="flex justify-center p-2">
-                        <img src="{{asset('/images/homepage_icon_05.webp')}}" height="175" width="175">
+                        <img src="{{asset('/images/homepage_icon_05.webp')}}" height="175" width="175" alt="A void coloured pyramid blocking the sun.">
                     </div>
                     <p class="text-xl">Built For Fun</p>
                     <p class="text-gray-400 text-sm">
@@ -144,11 +144,11 @@
                     </p>
 
                     <div class="mt-5 flex justify-center">
-                        <a href="/user/register" class="p-2 border-2 rounded-md hover:text-gray-200">Start today for free</a>
+                        <x-ui.general.button href="/user/register" class="py-2">Start today for free!</x-ui.general.button>
                     </div>
                 </div>
 
-                <img src="{{asset('/images/homepage_horse.webp')}}" width="400" class="rounded-lg hidden min-[1700px]:flex">
+                <img src="{{asset('/images/homepage_horse.webp')}}" width="400" class="rounded-lg hidden min-[1700px]:flex" alt="A picture of a horse in desert clothing and armour.">
             </div>
         </div>
     </x-container>
