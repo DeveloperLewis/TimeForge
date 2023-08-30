@@ -4,7 +4,7 @@
         <!--
             Navbar
         -->
-        <x-navbar />
+        <x-navbar></x-navbar>
 
         <!--
             Hero text
@@ -14,7 +14,7 @@
             <p class="text-md">Forge your skills and develop your new positive habits.</p>
 
             <form action="/user/register" method="get">
-                <button type="submit" class="mt-5 border-2 p-2 px-4 rounded-md hover:bg-white hover:text-black">Start Now</button>
+                <x-ui.forms.button class="border-2 px-4 py-2 mt-5">Start Now</x-ui.forms.button>
             </form>
         </div>
     </div>

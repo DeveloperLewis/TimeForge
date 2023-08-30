@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Index
-Route::get('/', [GeneralRoutesController::class, 'index']);
+Route::get('/', [GeneralRoutesController::class, 'index'])->name('index');
 
 //Pricing
-Route::get('/pricing', [GeneralRoutesController::class, 'pricing']);
+Route::get('/pricing', [GeneralRoutesController::class, 'pricing'])->name('pricing');
 
 //Features
-Route::get('/features', [GeneralRoutesController::class, 'features']);
+Route::get('/features', [GeneralRoutesController::class, 'features'])->name('features');
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +48,5 @@ Route::post('/user/logout', [UserController::class, 'logout'])->middleware('auth
 */
 
 //Show dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
