@@ -4,7 +4,7 @@
         <!--
             Navbar
         -->
-        <x-navbar></x-navbar>
+        <x-partials.navbar></x-partials.navbar>
 
         <!--
             Hero text

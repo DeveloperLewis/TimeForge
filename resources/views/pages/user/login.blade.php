@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('pages.layout')
 
 @section('content')
     <div class="flex justify-center items-center h-screen bg-cover bg-no-repeat bg-fixed" style="background-image: url('{{asset('/images/background_01.webp')}}');">
@@ -27,7 +27,6 @@
 
                     <div class="mb-10">
                         <p class="py-1 text-lg">Password</p>
-                        <input type="password" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring"  name="password" required/>
                         <x-ui.forms.input type="password" name="password"></x-ui.forms.input>
 
                         @error('password')
