@@ -9,16 +9,16 @@ class GeneralRoutesController extends Controller
 {
     public function index()
     {
-        return view('general.index');
+        return view('pages.general.index');
     }
 
     public function pricing()
     {
-        return view('general.pricing');
+        return view('pages.general.pricing');
     }
 
     public function features()
     {
-        return view('general.features');
+        return view('pages.general.features');
     }
 }

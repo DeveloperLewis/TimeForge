@@ -21,6 +21,6 @@ class container extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.container');
+        return view('components.partials.container');
     }
 }

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('pages.layout')
 
 @section('content')
     <div class="flex justify-center items-center h-screen bg-cover bg-no-repeat bg-fixed" style="background-image: url('{{asset('/images/background_01.webp')}}');">
@@ -18,7 +18,7 @@
 
                     <div class="mb-3">
                         <p class="py-1 text-lg">Name</p>
-                        <input type="text" name="name" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring" value="{{old('name')}}" required/>
+                        <x-ui.forms.input type="text" name="name" value="{{old('name')}}"></x-ui.forms.input>
 
                         @error('name')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -27,7 +27,7 @@
 
                     <div class="mb-3">
                         <p class="py-1 text-lg">Email Address</p>
-                        <input type="email" name="email" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring" value="{{old('email')}}" required/>
+                        <x-ui.forms.input type="email" name="email" value="{{old('email')}}"></x-ui.forms.input>
 
                         @error('email')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -36,7 +36,7 @@
 
                     <div class="mb-3">
                         <p class="py-1 text-lg">Password</p>
-                        <input type="password" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring"  name="password" required/>
+                        <x-ui.forms.input name="password" type="password"></x-ui.forms.input>
 
                         @error('password')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -45,7 +45,7 @@
 
                     <div class="mb-3">
                         <p class="py-1 text-lg">Confirm Password</p>
-                        <input type="password" class="text-black rounded w-full p-2 focus:outline-none focus:border-custom-blue-dark focus:ring"  name="password_confirmation" required/>
+                        <x-ui.forms.input name="password_confirmation" type="password"></x-ui.forms.input>
 
                         @error('password_confirmation')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -56,7 +56,7 @@
                         <a href="/privacy-policy" class="text-blue-400">Privacy Policy</a> and <a href="/cookies-policy" class="text-blue-400">Cookies Policy</a></p>
 
                     <div class="flex justify-center">
-                        <button type="submit" class="text-black rounded py-2 w-1/2 bg-white hover:bg-gray-200">Register</button>
+                        <x-ui.forms.button-filled>Register</x-ui.forms.button-filled>
                     </div>
                 </form>
             </div>

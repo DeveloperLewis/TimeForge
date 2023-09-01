@@ -21,6 +21,6 @@ class navbar_with_hero extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.navbar_with_hero');
+        return view('components.partials.navbar_with_hero');
     }
 }
