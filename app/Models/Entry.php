@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entry extends Model
 {
+    protected $fillable = ['name', 'description', 'category', 'time_performed', 'user_id'];
+
     use HasFactory;
 }

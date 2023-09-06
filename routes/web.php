@@ -55,5 +55,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 | Entries
 */
 Route::get('/dashboard/entries', [EntriesController::class, 'index'])->middleware('auth')->name('dashboard-entries');
+Route::post('/entry/add', [EntriesController::class, 'create'])->middleware('auth');
 
 
