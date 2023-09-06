@@ -34,8 +34,8 @@
                                     </div>
 
                                     <div class="flex items-center text-lg border-l pl-2">
-                                        <p class="pr-4">{{date("H:i:s", $entry->time_performed)}}</p>
-                                        <x-ui.general.button class="w-12 cursor-pointer"><i class="fa-regular fa-circle-play"></i></x-ui.general.button>
+                                        <p class="pr-4" id="timer_{{$entry->entry_id}}">203:59:55</p>
+                                        <x-ui.general.button class="w-12 cursor-pointer" id="button_{{$entry->entry_id}}" type="button" onclick="start_stop_timer({{$entry->entry_id}})"><i class="fa-regular fa-circle-play"></i></x-ui.general.button>
                                     </div>
                                 </div>
                             @endforeach
@@ -51,6 +51,87 @@
     </div>
 
     <script>
+        let current_timer = null
+        let current_elapsed_time = null;
+        let current_start_time = null;
+        let current_hrs = null;
+        let current_mins = null;
+        let current_secs = null;
+        let current_interval = null;
 
+        function start_stop_timer(id)
+        {
+            let timer = document.getElementById('timer_' + id)
+
+            //Timer Started
+            if (current_timer == null)
+            {
+                current_timer = timer
+                current_elapsed_time = convert_to_ms(current_timer.innerText)
+                current_start_time = Date.now() - current_elapsed_time
+
+                current_interval = setInterval(update_time, 999)
+            }
+
+            //Timer Switched
+            else if (current_timer !== timer)
+            {
+                clearInterval(current_interval)
+                reset_variables()
+
+                start_stop_timer(id)
+            }
+
+            //Timer Stopped
+            else {
+                clearInterval(current_interval)
+                reset_variables()
+            }
+        }
+
+        function save_time()
+        {
+
+        }
+
+        function reset_variables()
+        {
+            current_timer = null
+            current_elapsed_time = null;
+            current_start_time = null;
+            current_hrs = null;
+            current_mins = null;
+            current_secs = null;
+        }
+
+        function update_time()
+        {
+            current_elapsed_time = Date.now() - current_start_time
+
+            console.log(current_elapsed_time)
+
+            //Displaying time
+            current_secs = Math.floor((current_elapsed_time / 1000) % 60)
+            current_mins = Math.floor((current_elapsed_time / (1000 * 60)) % 60)
+            current_hrs = Math.floor((current_elapsed_time / (1000 * 60 * 60)))
+
+            current_secs = pad(current_secs)
+            current_mins = pad(current_mins)
+            current_hrs = pad(current_hrs)
+
+            current_timer.textContent = `${current_hrs}:${current_mins}:${current_secs}`
+
+            function pad(unit)
+            {
+                return(("0") + unit).length > 2 ? unit : "0" + unit
+            }
+        }
+
+        function convert_to_ms(time)
+        {
+            let array = time.split(":");
+            let seconds = (parseInt(array[0], 10) * 60 * 60) + (parseInt(array[1], 10) * 60) + parseInt(array[2], 10)
+            return seconds * 1000
+        }
     </script>
 @endsection
