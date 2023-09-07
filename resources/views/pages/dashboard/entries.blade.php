@@ -34,7 +34,7 @@
                                     </div>
 
                                     <div class="flex items-center text-lg border-l pl-2">
-                                        <p class="pr-4" id="timer_{{$entry->entry_id}}">203:59:55</p>
+                                        <p class="pr-4" id="timer_{{$entry->entry_id}}">{{date("H:i:s", (floor($entry->time_performed / 1000)))}}</p>
                                         <x-ui.general.button class="w-12 cursor-pointer" id="button_{{$entry->entry_id}}" type="button" onclick="start_stop_timer({{$entry->entry_id}})"><i class="fa-regular fa-circle-play"></i></x-ui.general.button>
                                     </div>
                                 </div>
@@ -70,13 +70,14 @@
                 current_elapsed_time = convert_to_ms(current_timer.innerText)
                 current_start_time = Date.now() - current_elapsed_time
 
-                current_interval = setInterval(update_time, 999)
+                current_interval = setInterval(update_time, 500)
             }
 
             //Timer Switched
             else if (current_timer !== timer)
             {
                 clearInterval(current_interval)
+                save_time(id)
                 reset_variables()
 
                 start_stop_timer(id)
@@ -85,13 +86,23 @@
             //Timer Stopped
             else {
                 clearInterval(current_interval)
+                save_time(id)
                 reset_variables()
             }
         }
 
-        function save_time()
+        function save_time(id)
         {
-
+            fetch('/entry/' + id + '/edit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    time_performed: current_elapsed_time,
+                })
+            })
         }
 
         function reset_variables()
@@ -107,8 +118,6 @@
         function update_time()
         {
             current_elapsed_time = Date.now() - current_start_time
-
-            console.log(current_elapsed_time)
 
             //Displaying time
             current_secs = Math.floor((current_elapsed_time / 1000) % 60)

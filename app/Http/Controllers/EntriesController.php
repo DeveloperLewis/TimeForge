@@ -11,14 +11,14 @@ class EntriesController extends Controller
 {
     public function index()
     {
-        $entries = Entry::latest()->paginate(6);
+        $entries = Entry::where('user_id', auth::id())->paginate(6);
 
         return view('pages.dashboard.entries', [
             'entries' => $entries
         ]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
@@ -39,5 +39,19 @@ class EntriesController extends Controller
         Entry::create($formFields);
 
         return redirect('/dashboard/entries');
+    }
+
+    public function edit(Request $request, Entry $entry)
+    {
+        if($entry->user_id != auth()->id())
+        {
+            abort(403, 'Unauthorized Action');
+        }
+
+        $formFields = $request->validate([
+           'time_performed' => ['required', 'integer']
+        ]);
+
+        $entry->update(['time_performed' => $formFields['time_performed']]);
     }
 }

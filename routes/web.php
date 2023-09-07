@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\GeneralRoutesController;
 use App\Http\Controllers\UserController;
+use App\Models\Entry;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 | Entries
 */
 Route::get('/dashboard/entries', [EntriesController::class, 'index'])->middleware('auth')->name('dashboard-entries');
-Route::post('/entry/add', [EntriesController::class, 'create'])->middleware('auth');
+
+Route::post('/entry/add', [EntriesController::class, 'store'])->middleware('auth');
+
+Route::post('/entry/{entry}/edit', [EntriesController::class, 'edit'])->middleware('auth');
 
 
