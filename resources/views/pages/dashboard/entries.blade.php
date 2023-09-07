@@ -44,7 +44,9 @@
                         @endunless
                     </div>
 
-                    {{$entries->links()}}
+                    <div class="mt-5">
+                        {{$entries->links('pagination::tailwind')}}
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,7 +11,9 @@ class EntriesController extends Controller
 {
     public function index()
     {
-        $entries = Entry::where('user_id', auth::id())->paginate(6);
+        $entries = Entry::where('user_id', auth::id())
+            ->orderBy('updated_at','DESC')
+            ->paginate(6);
 
         return view('pages.dashboard.entries', [
             'entries' => $entries
