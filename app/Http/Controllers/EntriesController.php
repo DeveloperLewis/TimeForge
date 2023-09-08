@@ -43,7 +43,7 @@ class EntriesController extends Controller
         return redirect('/dashboard/entries');
     }
 
-    public function edit(Request $request, Entry $entry)
+    public function updateTime(Request $request, Entry $entry)
     {
         if($entry->user_id != auth()->id())
         {
@@ -55,5 +55,17 @@ class EntriesController extends Controller
         ]);
 
         $entry->update(['time_performed' => $formFields['time_performed']]);
+    }
+
+    public function destroy(Entry $entry)
+    {
+        if($entry->user_id != auth()->id())
+        {
+            abort(403, 'Unauthorized Action');
+        }
+
+        $entry->delete();
+
+        return redirect('/dashboard/entries');
     }
 }

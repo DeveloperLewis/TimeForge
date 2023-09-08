@@ -59,6 +59,8 @@ Route::get('/dashboard/entries', [EntriesController::class, 'index'])->middlewar
 
 Route::post('/entry/add', [EntriesController::class, 'store'])->middleware('auth');
 
-Route::post('/entry/{entry}/edit', [EntriesController::class, 'edit'])->middleware('auth');
+Route::put('/entry/{entry}/edit', [EntriesController::class, 'updateTime'])->middleware('auth');
+
+Route::delete('/entry/{entry}/delete', [EntriesController::class, 'destroy'])->middleware('auth');
 
 

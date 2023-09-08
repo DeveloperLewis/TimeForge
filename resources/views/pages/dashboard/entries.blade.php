@@ -40,6 +40,14 @@
                                     <div class="flex items-center text-lg border-l pl-2">
                                         <p class="pr-4" id="timer_{{$entry->entry_id}}">{{date("H:i:s", (floor($entry->time_performed / 1000)))}}</p>
                                         <x-ui.general.button class="w-12 cursor-pointer" id="button_{{$entry->entry_id}}" type="button" onclick="start_stop_timer({{$entry->entry_id}})"><i class="fa-regular fa-circle-play"></i></x-ui.general.button>
+                                        <div class="ml-2">
+                                            <form action="/entry/{{$entry->entry_id}}/delete" method="POST"
+                                                  onsubmit="return confirm('Are you sure you wish to delete {{$entry->name}}?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-ui.forms.button>Delete</x-ui.forms.button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -116,7 +124,7 @@
         function save_time(id)
         {
             fetch('/entry/' + id + '/edit', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').content
