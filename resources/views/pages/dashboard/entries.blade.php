@@ -19,10 +19,14 @@
                         </div>
                     </form>
 
+                    @error('name')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+
                     <div class="mt-8">
                         @unless(count($entries) == 0)
                             @foreach($entries as $entry)
-                                <div class="flex items-center mt-2 justify-between">
+                                <div class="flex items-center mt-2 justify-between" >
                                     <div class="flex items-center">
                                         <p class="font-bold text-lg pr-4">{{$entry->name}}</p>
                                         @if(isset($entry->category))
@@ -53,22 +57,36 @@
     </div>
 
     <script>
+        let current_button = null
         let current_timer = null
-        let current_elapsed_time = null;
-        let current_start_time = null;
-        let current_hrs = null;
-        let current_mins = null;
-        let current_secs = null;
-        let current_interval = null;
+        let current_elapsed_time = null
+        let current_start_time = null
+        let current_hrs = null
+        let current_mins = null
+        let current_secs = null
+        let current_interval = null
+
+        let active_entry = document.getElementById("active_entry")
+
+        //Warn user about leaving while tracking is active
+        window.onbeforeunload = function() {
+            if (current_elapsed_time != null)
+            {
+                return "Leaving";
+            }
+        };
 
         function start_stop_timer(id)
         {
             let timer = document.getElementById('timer_' + id)
+            let button = document.getElementById('button_' + id)
 
             //Timer Started
             if (current_timer == null)
             {
                 current_timer = timer
+                current_button = button
+                switch_icon("stop")
                 current_elapsed_time = convert_to_ms(current_timer.innerText)
                 current_start_time = Date.now() - current_elapsed_time
 
@@ -80,6 +98,7 @@
             {
                 clearInterval(current_interval)
                 save_time(id)
+                switch_icon("start")
                 reset_variables()
 
                 start_stop_timer(id)
@@ -87,6 +106,7 @@
 
             //Timer Stopped
             else {
+                switch_icon("start")
                 clearInterval(current_interval)
                 save_time(id)
                 reset_variables()
@@ -103,13 +123,14 @@
                 },
                 body: JSON.stringify({
                     time_performed: current_elapsed_time,
-                })
+                }),
             })
         }
 
         function reset_variables()
         {
             current_timer = null
+            current_button = null
             current_elapsed_time = null;
             current_start_time = null;
             current_hrs = null;
@@ -143,6 +164,23 @@
             let array = time.split(":");
             let seconds = (parseInt(array[0], 10) * 60 * 60) + (parseInt(array[1], 10) * 60) + parseInt(array[2], 10)
             return seconds * 1000
+        }
+
+        function switch_icon(mode)
+        {
+            const startIconHtml = '<i class="fa-regular fa-circle-play"></i>'
+            const stopIconHtml = '<i class="fa-solid fa-stop"></i>'
+
+            switch (mode)
+            {
+                case "start":
+                    current_button.innerHTML = startIconHtml;
+                    break
+
+                case "stop":
+                    current_button.innerHTML = stopIconHtml;
+                    break
+            }
         }
     </script>
 @endsection

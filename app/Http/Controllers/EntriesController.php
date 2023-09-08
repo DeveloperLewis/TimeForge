@@ -13,7 +13,7 @@ class EntriesController extends Controller
     {
         $entries = Entry::where('user_id', auth::id())
             ->orderBy('updated_at','DESC')
-            ->paginate(6);
+            ->paginate(12);
 
         return view('pages.dashboard.entries', [
             'entries' => $entries
