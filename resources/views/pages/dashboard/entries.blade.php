@@ -14,14 +14,37 @@
                         @csrf
                         <div class="flex">
                             <x-ui.forms.input type="text" name="name" placeholder="Working on..."></x-ui.forms.input>
-                            <p class="text-blue-300 text-sm text-center mx-2 md:mx-3">Category<i class="fa-solid fa-chevron-down ml-2 fa-lg"></i></p>
+                            <select name="project" onchange="if(this.options[this.selectedIndex].value==='customOption'){toggleField(this,this.nextSibling); this.selectedIndex='0';}" class="mx-2 md:mx-3 text-black rounded bg-white focus:outline-none focus:border-custom-blue-dark focus:ring p-2">
+                                <option disabled selected>Select Project</option>
+                                <option value="customOption" class="font-semibold">Add New</option>
+                                @foreach($projects as $project)
+                                    <option>{{$project}}</option>
+                                @endforeach
+                            </select><input name="project" style="display:none;" disabled="disabled" onblur="if(this.value===''){toggleField(this,this.previousSibling);}" class="mx-2 md:mx-3 text-black rounded focus:outline-none focus:border-custom-blue-dark focus:ring p-2">
+
+                            <select name="reward_tier" class="mr-2 text-black rounded bg-white focus:outline-none focus:border-custom-blue-dark focus:ring p-2">
+                                <option disabled selected>Reward Tier</option>
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
                             <x-ui.forms.button-filled class="w-16"><i class="fa-regular fa-clock"></i></x-ui.forms.button-filled>
                         </div>
                     </form>
 
-                    @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
+                    <div class="flex justify-between">
+                        @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+
+                        @error('reward_tier')
+                        <p class="text-red-500 text-xs mt-1 float-right">{{$message}}</p>
+                        @enderror
+
+                        @error('project')
+                        <p class="text-red-500 text-xs mt-1 float-right">{{$message}}</p>
+                        @enderror
+                    </div>
 
                     <div class="mt-8">
                         @unless(count($entries) == 0)
@@ -29,11 +52,8 @@
                                 <div class="flex items-center mt-2 justify-between" >
                                     <div class="flex items-center">
                                         <p class="font-bold text-lg pr-4">{{$entry->name}}</p>
-                                        @if(isset($entry->category))
-                                            <p class="pr-4">{{$entry->category}}</p>
-
-                                        @else
-                                            <p class="text-blue-300 text-sm text-center mx-2 md:mx-3 cursor-pointer">Add Category</p>
+                                        @if(isset($entry->project))
+                                            <p class="pr-4 text-sm text-red-200">{{$entry->project}}</p>
                                         @endif
                                     </div>
 
@@ -189,6 +209,14 @@
                     current_button.innerHTML = stopIconHtml;
                     break
             }
+        }
+
+        function toggleField(hideObj,showObj) {
+            hideObj.disabled = true;
+            hideObj.style.display = 'none';
+            showObj.disabled = false;
+            showObj.style.display = 'inline';
+            showObj.focus();
         }
     </script>
 @endsection

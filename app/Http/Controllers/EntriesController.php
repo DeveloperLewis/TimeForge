@@ -15,26 +15,35 @@ class EntriesController extends Controller
             ->orderBy('updated_at','DESC')
             ->paginate(12);
 
+        //Get project names, make upper case and remove duplicates
+        $projectsList = [];
+
+        foreach($entries as $entry)
+        {
+            if ($entry->project != null)
+            {
+                $projectsList[] = $entry->project;
+            }
+        }
+
+        $projectsList = array_change_key_case($projectsList, CASE_UPPER);
+        $projectsList = array_unique($projectsList);
+
         return view('pages.dashboard.entries', [
-            'entries' => $entries
+            'entries' => $entries,
+            'projects' => $projectsList
         ]);
     }
 
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => ['required', 'min:3'],
-            'description' => ['min:5', 'max:1000'],
-            'category' => ['integer']
+            'name' => ['string', 'required', 'min:3', 'max:40'],
+            'reward_tier' => ['string', 'required', 'min:3', 'max:7'],
+            'project' => ['string', 'min:1', 'max:15']
         ]);
 
         $formFields['user_id'] = Auth::id();
-
-        //Validate that only the user linked category id's can be selected, frontend and backend
-        if(isset($request->category_id))
-        {
-            $formFields['category_id'] = $request->category_id;
-        }
 
         $formFields['time_performed'] = 0;
 
