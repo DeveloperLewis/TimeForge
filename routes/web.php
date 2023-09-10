@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\GeneralRoutesController;
 use App\Http\Controllers\UserController;
+use App\Models\Entry;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,4 +51,16 @@ Route::post('/user/logout', [UserController::class, 'logout'])->middleware('auth
 
 //Show dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+
+/*
+| Entries
+*/
+Route::get('/dashboard/entries', [EntriesController::class, 'index'])->middleware('auth')->name('dashboard-entries');
+
+Route::post('/entry/add', [EntriesController::class, 'store'])->middleware('auth');
+
+Route::put('/entry/{entry}/edit', [EntriesController::class, 'updateTime'])->middleware('auth');
+
+Route::delete('/entry/{entry}/delete', [EntriesController::class, 'destroy'])->middleware('auth');
+
 

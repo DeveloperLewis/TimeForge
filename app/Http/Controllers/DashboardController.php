@@ -11,4 +11,9 @@ class DashboardController extends Controller
     {
         return view('pages.dashboard.index');
     }
+
+    public function entries()
+    {
+        return view('pages.dashboard.entries');
+    }
 }
