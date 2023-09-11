@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entry;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +65,7 @@ class EntriesController extends Controller
         ]);
 
         $entry->update(['time_performed' => $formFields['time_performed']]);
+
     }
 
     public function destroy(Entry $entry)

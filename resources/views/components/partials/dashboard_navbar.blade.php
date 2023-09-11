@@ -4,7 +4,7 @@
 
     <a href="#" class="cursor-default pointer-events-none text-xs text-gray-300 font-black mt-5 px-5 my-1 md:px-10">EPOCHIUM</a>
     <x-ui.general.dashboard_link href="/dashboard/character">CHARACTER</x-ui.general.dashboard_link>
-    <x-ui.general.dashboard_link href="/dashboard/character">REWARDS</x-ui.general.dashboard_link>
+    <x-ui.general.dashboard_link href="/dashboard/rewards">REWARDS</x-ui.general.dashboard_link>
 
     <a href="#" class="cursor-default pointer-events-none text-xs text-gray-300 font-black mt-5 px-5 my-1 md:px-10">ANALYTICS</a>
     <x-ui.general.dashboard_link href="/dashboard/calendar">CALENDAR</x-ui.general.dashboard_link>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\GeneralRoutesController;
+use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\UserController;
 use App\Models\Entry;
 use Illuminate\Support\Facades\Route;
@@ -63,4 +64,13 @@ Route::put('/entry/{entry}/edit', [EntriesController::class, 'updateTime'])->mid
 
 Route::delete('/entry/{entry}/delete', [EntriesController::class, 'destroy'])->middleware('auth');
 
+/*
+| Rewards
+ */
+
+Route::get('/dashboard/rewards', [RewardsController::class, 'index'])->middleware('auth')->name('dashboard-reward');
+
+Route::get('/reward/new', [RewardsController::class, 'create'])->middleware('auth');
+
+Route::post('/reward/new', [RewardsController::class, 'store'])->middleware('auth');
 
